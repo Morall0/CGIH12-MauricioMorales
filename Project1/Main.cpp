@@ -2,9 +2,9 @@
 
 //#define GLEW_STATIC
 
-#include <GL/glew.h>
+#include <GL/glew.h> // Es la que nos permite trabajar con OpenGL
 
-#include <GLFW/glfw3.h>
+#include <GLFW/glfw3.h> // Es la que nos permite interactuar con perifericos 
 
 const GLint WIDTH = 800, HEIGHT = 600;
 
@@ -29,11 +29,7 @@ const GLchar* fragmentShaderSource =
 };
 
 // Funciones de configuracion del shader
-
 void CrearShader(void);
-
-
-
 
 int main() {
 	glfwInit();
@@ -44,10 +40,12 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
+	// Se crea la ventana
 	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 0", nullptr, nullptr);
 	
 	int screenWidth, screenHeight;
 
+	// Buffer de renderizado
 	glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
 
 	//Verificación de errores de creacion  ventana
@@ -111,7 +109,7 @@ int main() {
 	
 
 
-
+	// Bucle principal del codigo que dibuja todo lo que le decimos
 	while (!glfwWindowShouldClose(window))
 	{
 		// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
