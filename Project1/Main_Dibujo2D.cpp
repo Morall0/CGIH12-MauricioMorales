@@ -65,7 +65,8 @@ int main() {
 		-0.5f,  0.5f, 0.0f,   1.0f,1.0f,0.0f, // top left 
 	};
 	unsigned int indices[] = {  // note that we start from 0!
-		0,2,3,
+		0,3,2,
+		0,2,1,
 		3,2,1,// second Triangle
 		0,1,3,
 	};
@@ -121,21 +122,21 @@ int main() {
 
 
         glPointSize(10); // Determina el tamaño del pixel
-        //glDrawArrays(GL_POINTS,0,1); // Recibe el indice de donde va a dibujar y el numero de puntos
+        glDrawArrays(GL_POINTS,0,1); // Recibe el vertice de donde va a dibujar y el numero de puntos
         
-        //glDrawArrays(GL_LINES,0,2); // Recibe el indice de donde va a empezar y cuantos puntos va a tomar
+        //glDrawArrays(GL_LINES,0,2); // Recibe el vertice de donde va a empezar y cuantos puntos va a tomar
         //glDrawArrays(GL_LINE_LOOP,0,4);
         
         //glDrawArrays(GL_TRIANGLES,0,3);
-        //glDrawElements(GL_TRIANGLES, 3,GL_UNSIGNED_INT,0); // Le decimos que tome tres indices y le indicamos que empieze en el indice 0
+        //glDrawElements(GL_TRIANGLES, 3,GL_UNSIGNED_INT,0); // Trabaja con el arreglo de indices y se le indica cuantos de ellos va a tomar (3)
 
 		// EJERCICIO 1. Dibujar un punto diferente al 0
 		
-		//glDrawArrays(GL_POINTS, 3, 1); // se dibuja el vertice 3
+		//glDrawArrays(GL_POINTS, 3, 1);
 		
 		// EJERCICIO 2. En una sola instruccion dibujar los 4 puntos
 		 
-		//glDrawArrays(GL_POINTS, 0, 4); // se dibuja el vertice 3
+		//glDrawArrays(GL_POINTS, 0, 4);
 		 
 		// EJERCICIO 3. En una sola instruccion dibujar dos lineas paralelas
 		 
@@ -143,11 +144,11 @@ int main() {
 		
 		// EJERCICIO 4. Dibujar un triangulo esquinado arriba a la izquierda
 		
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 		 
 		// Ejercicio 5. Dibujar el rectangulo
 
-		//glDrawArrays(GL_POLYGON, 0, 4);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
         glBindVertexArray(0);
     
