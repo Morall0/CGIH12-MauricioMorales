@@ -21,12 +21,12 @@ movZ = -5.0f,
 rot = 0.0f;
 
 //For model
-float	hombro = 0.0f, codo = 0.0f, mano = 0.0f, dedo = 0.0f;
+float	hombro = 0.0f, codo = 0.0f, muneca = 0.0f, falanges = 0.0f;
 
 
 int main() {
 	glfwInit();
-	//Verificación de compatibilidad 
+	//Verificaciï¿½n de compatibilidad 
 	// Set all the required options for GLFW
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -41,7 +41,7 @@ int main() {
 
 	glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
 
-	//Verificación de errores de creacion  ventana
+	//Verificaciï¿½n de errores de creacion  ventana
 	if (nullptr == window)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -53,7 +53,7 @@ int main() {
 	glfwMakeContextCurrent(window);
 	glewExperimental = GL_TRUE;
 
-	//Verificación de errores de inicialización de glew
+	//Verificaciï¿½n de errores de inicializaciï¿½n de glew
 
 	if (GLEW_OK != glewInit()) {
 		std::cout << "Failed to initialise GLEW" << std::endl;
@@ -208,7 +208,7 @@ int main() {
 		color = glm::vec3(0.0f, 1.0f, 0.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		//Codo
 		model = glm::translate(modelTemp, glm::vec3(1.5f, 0.0f, 0.0f)); // Se traslada el pivote
@@ -218,79 +218,79 @@ int main() {
 		color = glm::vec3(1.0f, 0.0f, 0.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Mano
+		//Muneca
 		model = glm::translate(modelTemp, glm::vec3(1.0f, 0.0f, 0.0f)); // Se traslada el pivote
-		model = glm::rotate(model, glm::radians(mano), glm::vec3(1.0f, 0.0, 0.0f));
+		model = glm::rotate(model, glm::radians(muneca), glm::vec3(1.0f, 0.0, 0.0f));
 		modelTemp = model = glm::translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 1.0f));
 		color = glm::vec3(0.0f, 0.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Dedo 1
+		//Dedo 1 Falange 1
 		model = glm::translate(modelTemp, glm::vec3(0.25f, 0.5f, 0.0f)); // Se traslada el pivote
-		model = glm::rotate(model, glm::radians(dedo), glm::vec3(0.0f, 0.0, 1.0f));
+		model = glm::rotate(model, glm::radians(falanges), glm::vec3(0.0f, 0.0, 1.0f));
 		modelTemp2 = model = glm::translate(model, glm::vec3(0.3f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.6f, 0.2f, 0.2f));
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Falange 1
+		//Dedo 1 Falange 2
 		model = glm::translate(modelTemp2, glm::vec3(0.3f, 0.0f, 0.0f)); // Se traslada el pivote
-		model = glm::rotate(model, glm::radians(dedo * 3.0f), glm::vec3(0.0f, 0.0, 1.0f));
+		model = glm::rotate(model, glm::radians(falanges * 3.0f), glm::vec3(0.0f, 0.0, 1.0f));
 		model = glm::translate(model, glm::vec3(0.2f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.4f, 0.2f, 0.2f));
 		color = glm::vec3(0.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Dedo 2
+		//Dedo 2 Falange 1
 		model = glm::translate(modelTemp, glm::vec3(0.25f, -0.5f, -0.5f)); // Se traslada el pivote
 		model = glm::rotate(model, glm::radians(45.0f), glm::vec3(1.0f, 0.0, 0.0f));
-		model = glm::rotate(model, glm::radians(-dedo), glm::vec3(0.0f, 0.0, 1.0f));
+		model = glm::rotate(model, glm::radians(-falanges), glm::vec3(0.0f, 0.0, 1.0f));
 		modelTemp2 = model = glm::translate(model, glm::vec3(0.3f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.6f, 0.2f, 0.2f));
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Falange 2
+		//Dedo 2 Falange 2
 		model = glm::translate(modelTemp2, glm::vec3(0.3f, 0.0f, 0.0f)); // Se traslada el pivote
-		model = glm::rotate(model, glm::radians(-dedo * 3.0f), glm::vec3(0.0f, 0.0, 1.0f));
+		model = glm::rotate(model, glm::radians(-falanges * 3.0f), glm::vec3(0.0f, 0.0, 1.0f));
 		model = glm::translate(model, glm::vec3(0.2f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.4f, 0.2f, 0.2f));
 		color = glm::vec3(0.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Dedo 3
+		//Dedo 3 Falange 1
 		model = glm::translate(modelTemp, glm::vec3(0.25f, -0.5f, 0.5f)); // Se traslada el pivote
 		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(1.0f, 0.0, 0.0f));
-		model = glm::rotate(model, glm::radians(-dedo), glm::vec3(0.0f, 0.0, 1.0f));
+		model = glm::rotate(model, glm::radians(-falanges), glm::vec3(0.0f, 0.0, 1.0f));
 		modelTemp2 = model = glm::translate(model, glm::vec3(0.3f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.6f, 0.2f, 0.2f));
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//Falange 3
+		//Dedo 3 Falange 2
 		model = glm::translate(modelTemp2, glm::vec3(0.3f, 0.0f, 0.0f)); // Se traslada el pivote
-		model = glm::rotate(model, glm::radians(-dedo * 3.0f), glm::vec3(0.0f, 0.0, 1.0f));
+		model = glm::rotate(model, glm::radians(-falanges * 3.0f), glm::vec3(0.0f, 0.0, 1.0f));
 		model = glm::translate(model, glm::vec3(0.2f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.4f, 0.2f, 0.2f));
 		color = glm::vec3(0.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glDrawArrays(GL_TRIANGLES, 0, 36);//A
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glBindVertexArray(0);
 
@@ -335,13 +335,13 @@ int main() {
 	 if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
 		 codo -= 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		 mano += 0.18f;
+		 muneca += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		 mano -= 0.18f;
+		 muneca -= 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
-		 dedo += 0.18f;
+		 falanges += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		 dedo -= 0.18f;
+		 falanges -= 0.18f;
  }
 
 
